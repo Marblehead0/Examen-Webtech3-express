@@ -7,15 +7,6 @@
 </head>
 <body>
 Geef hier in wie je bent, welk examen je wilt inhalen en de reden hiervoor.
- <ul class="inhaal">
-  <% for(var i=0; i<inhaal.length; i++) {%>
-    <li class="inhaalExamens">
-      <span><%= inhaal[i].naam %></span>
-      <span><%= inhaal[i].examen %></span>
-      <span><%= inhaal[i].reden%></span>
-    </li>
-<% } %>
-  </ul>
 
   <form action="/inhaal" method="POST">
     <input type="text" placeholder="naam" name="naam">

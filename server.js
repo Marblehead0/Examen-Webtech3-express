@@ -27,9 +27,27 @@ app.get('/', (req, res) => {
   })
 
   app.post('/inhaal',(req,res)=>{
-      db.collection('inhaal').insertOne(req.body,(err,result)=>{
-          if(err) return console.log(err)
+      
+    inhaalExamens = req.body;
+    db.collection('inhaal').findOne({name: inhaalExamens.name,$or:[{inhaalExamen : inhaalExamens.inhaalExamen,reden: inhaalExamens.reden}]},function(err,existinguser){
+        if(existinguser == null)
+        {
+            db.collection('inhaal').insertOne(req.body,(err,result)=>{
+                if(err) return console.log(err)
 
-          console.log('saved to database')
-      })
+                console.log('saved to database')
+                res.redirect('/')
+            })
+        }
+        else    
+        {
+            console.log("bestaat al")
+        }
+    })
+
   })
+
+  app.get('/search', (req, res) => {
+    res.render('search.ejs', {});
+ });
+    
