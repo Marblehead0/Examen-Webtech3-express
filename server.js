@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
   app.post('/inhaal',(req,res)=>{
       
     inhaalExamens = req.body;
-    db.collection('inhaal').findOne({name: inhaalExamens.name,inhaalExamen : inhaalExamens.inhaalExamen,reden: inhaalExamens.reden},function(err,existinguser){
+    db.collection('inhaal').findOne({name: inhaalExamens.name,inhaalExamen : inhaalExamxens.inhaalExamen,reden: inhaalExamens.reden},function(err,existinguser){
         if(existinguser == null)
         {
             db.collection('inhaal').insertOne(req.body,(err,result)=>{
