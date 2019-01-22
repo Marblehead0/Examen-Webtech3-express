@@ -22,6 +22,14 @@ app.get('/', (req, res) => {
     db.collection('inhaal').find().toArray((err, result) => {
       if (err) return console.log(err)
       // renders index.ejs
-      res.render('index.ejs', {quotes: result})
+      res.render('index.ejs', {inhaal: result})
     })
+  })
+
+  app.post('/inhaal',(req,res)=>{
+      db.collection('inhaal').insertOne(req.body,(err,result)=>{
+          if(err) return console.log(err)
+
+          console.log('saved to database')
+      })
   })
